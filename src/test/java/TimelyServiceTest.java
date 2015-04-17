@@ -1,18 +1,22 @@
-# Reactive Timely
-A Java library to access timely in a reactive manner
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import no.item.play.oauth2.OAuthClient;
+import no.item.play.oauth2.RefreshTokenHolder;
+import no.item.play.oauth2.SimpleRefreshTokenHolder;
+import no.item.play.timely.TimelyService;
 
-## Usage
+public class TimelyServiceTest {
 
-```java
+    public void testProject(){
         Long timeout = 2000L;
         String baseUrl = "https://<mypage>.timelyapp.com";
         String authURL = baseUrl + "/api/v1/oauth/authorize";
         String tokenURL = baseUrl + "/api/v1/oauth/token";
 
-        /* this object's used to hold the refresh token (and pzzt... you can save it persistently) */
+        // this object's used to hold the refresh token (and pzzt... you can save it persistently)
         RefreshTokenHolder refreshTokenHolder = new SimpleRefreshTokenHolder();
 
-        /* sets up an oauth client that will do the request-token stuff for you */
+        // sets up an oauth client that will do the request-token stuff for you
         OAuthClient client = OAuthClient.create(authURL, tokenURL)
                 .clientId("...")
                 .clientSecret("...")
@@ -33,4 +37,5 @@ A Java library to access timely in a reactive manner
                 .list(10, 0, "ASC")
                 .map(json -> ((ArrayNode) json).get(0).path("name").asText())
                 .get(timeout);
-```
+    }
+}
