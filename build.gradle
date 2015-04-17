@@ -1,0 +1,42 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+version = '0.0.1-SNAPSHOT'
+group   = 'no.item.play'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url "http://repo.typesafe.com/typesafe/releases/"
+    }
+    maven {
+        url "http://nerdforge.com:8081/nexus/content/repositories/snapshots/"
+    }
+}
+
+dependencies {
+    compile group: 'no.item.play', name: 'reactive-oauth2', version: '0.0.1-SNAPSHOT'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "http://nerdforge.com:8081/nexus/content/repositories/snapshots/"){
+                authentication(userName: mavenUser, password: mavenPassword)
+            }
+        }
+    }
+}
