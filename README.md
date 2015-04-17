@@ -29,8 +29,7 @@ A Java library to access timely in a reactive manner
                 .get(timeout);
 
         // get first project's name (reactivly)
-        String projectName = timely.projects()
+        Promise<String> projectName = timely.projects()
                 .list(10, 0, "ASC")
-                .map(json -> ((ArrayNode) json).get(0).path("name").asText())
-                .get(timeout);
+                .map(json -> ((ArrayNode) json).get(0).path("name").asText());
 ```
