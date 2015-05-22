@@ -34,7 +34,7 @@ sourceSets {
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: "http://nerdforge.com:8081/nexus/content/repositories/snapshots/"){
+            repository(url: "http://repo.item.no/content/repositories/snapshots/"){
                 authentication(userName: mavenUser, password: mavenPassword)
             }
         }
