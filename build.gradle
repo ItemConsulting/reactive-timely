@@ -4,7 +4,7 @@ apply plugin: 'maven'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-version = '0.0.1-SNAPSHOT'
+version = '0.0.2-SNAPSHOT'
 group   = 'no.item.play'
 
 repositories {
@@ -14,12 +14,12 @@ repositories {
         url "http://repo.typesafe.com/typesafe/releases/"
     }
     maven {
-        url "http://nerdforge.com:8081/nexus/content/repositories/snapshots/"
+        url "http://repo.item.no/content/repositories/snapshots/"
     }
 }
 
 dependencies {
-    compile group: 'no.item.play', name: 'reactive-oauth2', version: '0.0.1-SNAPSHOT'
+    compile group: 'no.item.play', name: 'reactive-oauth2', version: '0.0.2-SNAPSHOT'
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 
@@ -34,7 +34,7 @@ sourceSets {
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: "http://nerdforge.com:8081/nexus/content/repositories/snapshots/"){
+            repository(url: "http://repo.item.no/content/repositories/snapshots/"){
                 authentication(userName: mavenUser, password: mavenPassword)
             }
         }
