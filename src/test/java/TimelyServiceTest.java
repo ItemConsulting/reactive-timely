@@ -3,7 +3,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import no.item.play.oauth2.OAuthClient;
 import no.item.play.oauth2.RefreshTokenHolder;
 import no.item.play.oauth2.SimpleRefreshTokenHolder;
-import no.item.play.timely.TimelyService;
+import no.item.play.timely.TimelyClient;
 import play.libs.F.Promise;
 
 public class TimelyServiceTest {
@@ -26,7 +26,7 @@ public class TimelyServiceTest {
                 .build();
 
         // this is your timely service
-        TimelyService timely = new TimelyService(client, baseUrl);
+        TimelyClient timely = new TimelyClient(client, baseUrl);
 
         // get events
         JsonNode eventList = timely.events()

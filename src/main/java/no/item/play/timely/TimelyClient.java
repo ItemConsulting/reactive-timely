@@ -3,11 +3,11 @@ package no.item.play.timely;
 import no.item.play.oauth2.OAuthClient;
 import no.item.play.timely.services.*;
 
-public class TimelyService {
+public class TimelyClient {
     private final OAuthClient client;
     private final String baseURL;
 
-    public TimelyService(OAuthClient client, String baseURL){
+    public TimelyClient(OAuthClient client, String baseURL){
         this.client = client;
         this.baseURL = baseURL;
     }

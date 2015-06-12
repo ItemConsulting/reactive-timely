@@ -28,7 +28,7 @@ public class Reports {
      * @return
      */
     public Promise<JsonNode> list(String users, String startDate,  String endDate, String projects, Boolean estimated){
-        return client.url(baseURL + "/api/v1/reports")
+        return client.url(baseURL + "/1.0/1/reports")
                 .setQueryParameter("users", users)
                 .setQueryParameter("start_date", startDate)
                 .setQueryParameter("end_date", endDate)
@@ -36,4 +36,6 @@ public class Reports {
                 .setQueryParameter("estimated", estimated)
                 .get();
     }
+
+
 }
