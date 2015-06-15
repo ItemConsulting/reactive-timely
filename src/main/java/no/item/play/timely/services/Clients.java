@@ -2,13 +2,20 @@ package no.item.play.timely.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import no.item.play.oauth2.OAuthClient;
+import no.item.play.timely.TimelyBaseURL;
+import no.item.play.timely.TimelyOauthClient;
 import play.libs.F.Promise;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+@Singleton
 public class Clients {
     private final OAuthClient client;
     private final String baseURL;
 
-    public Clients(OAuthClient client, String baseURL){
+    @Inject
+    public Clients(@TimelyOauthClient OAuthClient client, @TimelyBaseURL String baseURL){
         this.baseURL = baseURL;
         this.client = client;
     }
@@ -21,7 +28,7 @@ public class Clients {
      *               Example: specifying "offset=0" will start offset from 0 record, "offset=4" will start offset from 4th record, etc
      * @param order Reverses the sorting order, when you include the parameter
      *              Example: "order=desc" or "order=asc"
-     * @return
+     * @return A list of clients
      */
     public Promise<JsonNode> list(Integer limit, Integer offset, String order){
         return client.url(baseURL + "/api/v1/clients")
@@ -36,7 +43,7 @@ public class Clients {
      *
      * @param id The numerical ID of the desired client.
      *           Example Values: 123
-     * @return
+     * @return A client
      */
     public Promise<JsonNode> byId(Integer id){
         return client.url(baseURL + "/api/v1/clients/" + id).get();

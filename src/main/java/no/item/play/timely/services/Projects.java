@@ -2,13 +2,20 @@ package no.item.play.timely.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import no.item.play.oauth2.OAuthClient;
+import no.item.play.timely.TimelyBaseURL;
+import no.item.play.timely.TimelyOauthClient;
 import play.libs.F.Promise;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+@Singleton
 public class Projects {
     private final OAuthClient client;
     private final String baseURL;
 
-    public Projects(OAuthClient client, String baseURL){
+    @Inject
+    public Projects(@TimelyOauthClient OAuthClient client, @TimelyBaseURL String baseURL){
         this.baseURL = baseURL;
         this.client = client;
     }
@@ -35,7 +42,7 @@ public class Projects {
      *
      * @param id The numerical ID of the desired project.
      *           Example Values: 123
-     * @return
+     * @return A JsonNode specifying a project
      */
     public Promise<JsonNode> byId(Integer id){
         return client.url(baseURL + "/api/v1/projects/" + id).get();
